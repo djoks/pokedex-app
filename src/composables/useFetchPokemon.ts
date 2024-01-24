@@ -1,8 +1,9 @@
 import { Ref } from 'vue'
-import { useQuery } from '@vue/apollo-composable'
+import { useQuery, provideApolloClient } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
 import { PokemonBio } from '@/types'
 import { ApolloError } from '@apollo/client/errors'
+import apolloClient from '@/apollo'
 
 const useFetchPokemon = (
   name: string | undefined,
@@ -46,6 +47,8 @@ const useFetchPokemon = (
       }
     }
   `
+
+  provideApolloClient(apolloClient);
 
   const { result, loading, error } = useQuery<{
     pokemon: PokemonBio
