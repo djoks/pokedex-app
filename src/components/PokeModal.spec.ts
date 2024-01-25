@@ -26,7 +26,7 @@ describe('PokeModal', () => {
 
     it('renders with data from store', async () => {
         await flushPromises();
-        expect(wrapper.text()).toContain('Bulbasaur');
+        expect(wrapper.text()).toContain('bulbasaur');
         expect(wrapper.find('img').attributes('src')).toBe('https://picsum.photos/200');
     });
 });

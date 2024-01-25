@@ -1,13 +1,8 @@
 <template>
   <button class="outline-none" v-on:click="likePokemon">
-    <heart-filled-icon
-      v-if="isLiked"
-      class="w-4 h-4 object-contain animate-in fade-in animate-out fade-out"
-    />
-    <heart-icon
-      v-else
-      class="w-4 h-4 object-contain animate-in fade-in animate-out fade-out"
-    />
+    <heart-filled-icon v-if="isLiked" class="w-4 h-4 object-contain animate-in fade-in animate-out fade-out"
+      role="dislike" />
+    <heart-icon v-else class="w-4 h-4 object-contain animate-in fade-in animate-out fade-out" role="like" />
   </button>
 </template>
 
