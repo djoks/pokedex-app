@@ -4,7 +4,7 @@
       <div class="relative flex items-center justify-between h-16">
         <button
           class="md:hidden flex items-center justify-center p-2 rounded-xl border dark:border-opacity-80 outline-none"
-          v-on:click="menu.toggleMenu()"
+          @click="menu.toggleMenu()"
         >
           <menu-icon class="w-8 h-8 object-contain dark:opacity-80" />
         </button>

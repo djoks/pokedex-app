@@ -14,6 +14,10 @@ module.exports = {
     '@vue/prettier',
     '@vue/typescript/recommended',
     'prettier',
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/eslint-config-typescript',
+    '@vue/eslint-config-prettier/skip-formatting',
   ],
   rules: {
     'vue/script-setup-uses-vars': 'error',
@@ -55,12 +59,6 @@ module.exports = {
         order: ['template', 'script', 'style'],
       },
     ],
-
-    // Enforce v-bind directive usage in long form.
-    'vue/v-bind-style': ['error', 'longform'],
-
-    // Enforce v-on directive usage in long form.
-    'vue/v-on-style': ['error', 'longform'],
 
     // Don't require a default value for the props.
     'vue/require-default-prop': 'off',

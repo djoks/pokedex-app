@@ -3,13 +3,13 @@
     <span class="dark:text-white dark:text-opacity-80">Base Stats:</span>
     <div v-if="stats" class="grid grid-cols-2 md:grid-cols-1 w-full gap-3">
       <template v-if="loading">
-        <stat-loader v-for="n in 6" v-bind:key="n" />
+        <stat-loader v-for="n in 6" :key="n" />
       </template>
       <stat-bar
         v-for="stat in stats"
         v-else
-        v-bind:key="stat.stat.name"
-        v-bind:stat="stat"
+        :key="stat.stat.name"
+        :stat="stat"
       ></stat-bar>
     </div>
   </div>

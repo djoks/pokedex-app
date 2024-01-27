@@ -2,13 +2,13 @@
   <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
     <poke-tile
       v-for="pokemon in pokemons"
-      v-bind:key="pokemon.id"
-      v-bind:pokemon="pokemon"
+      :key="pokemon.id"
+      :pokemon="pokemon"
     />
     <template v-if="loading">
       <skeleton-loader
         v-for="n in 20"
-        v-bind:key="n"
+        :key="n"
         class="w-full h-48 rounded-xl"
       />
     </template>

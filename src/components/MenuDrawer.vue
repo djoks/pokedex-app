@@ -1,6 +1,6 @@
 <template>
   <div v-if="menu.isVisible" class="flex h-full md:hidden">
-    <back-drop v-bind:close="menu.closeMenu">
+    <back-drop :close="menu.closeMenu">
       <div class="animate-in slide-in-from-left-50">
         <div
           v-if="menu.isVisible"

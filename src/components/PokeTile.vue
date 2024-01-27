@@ -3,20 +3,20 @@
     v-show="imageLoaded"
     ref="card"
     class="flex flex-col relative items-center justify-end rounded-xl shadow overflow-hidden h-48 w-full bottom-0 bg-gray-200 dark:!bg-gray-900 bg-pokeball-light filter dark:brightness-75 dark:bg-pokeball-dark bg-no-repeat bg-center bg-contain cursor-pointer"
-    v-bind:style="cardThemeStyle"
-    v-on:click="selectPokemon(pokemon)"
+    :style="cardThemeStyle"
+    @click="selectPokemon(pokemon)"
   >
     <img
-      v-bind:src="pokemon.artwork"
-      v-bind:alt="pokemon.name"
+      :src="pokemon.artwork"
+      :alt="pokemon.name"
       crossorigin="anonymous"
       class="w-32 object-contain"
-      v-on:load="handleImageLoad"
+      @load="handleImageLoad"
     />
     <div
       ref="caption"
       class="flex items-center justify-center space-x-1 py-1 px-2 rounded-full text-center bg-black dark:bg-gray-700 bg-opacity-20 text-white mb-5"
-      v-bind:style="captionThemeStyle"
+      :style="captionThemeStyle"
     >
       <img
         src="@/assets/pokeball.png"

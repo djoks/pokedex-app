@@ -11,7 +11,7 @@
     </span>
     <div class="w-full rounded-full $ bg-gray-200">
       <div
-        v-bind:style="{ backgroundColor: color, width: statWidth }"
+        :style="{ backgroundColor: color, width: statWidth }"
         class="text-xs font-medium text-black dark:text-white dark:text-opacity-80 text-center p-0.5 leading-none rounded-full"
       ></div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="flex-shrink-0 flex items-center space-x-3">
-    <logo v-bind:class="logoClass" role="logo" />
+    <logo :class="logoClass" role="logo" />
   </div>
 </template>
 

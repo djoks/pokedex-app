@@ -15,10 +15,10 @@
         >. Clicking on a Pokemon reveals more details.</small
       >
     </h1>
-    <poke-list v-bind:pokemons="pokemons" v-bind:loading="loading" />
+    <poke-list :pokemons="pokemons" :loading="loading" />
 
     <div class="flex items-start">
-      <app-message v-if="pokemons.length < 1" v-bind:message="message" />
+      <app-message v-if="pokemons.length < 1" :message="message" />
     </div>
 
     <div ref="sentinel" class="sentinel"></div>

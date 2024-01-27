@@ -1,37 +1,34 @@
 <template>
-  <back-drop v-bind:close="closeModal">
+  <back-drop :close="closeModal">
     <div
       class="flex flex-col self-center mx-auto md:flex-row bg-white dark:bg-gray-700 rounded-xl shadow overflow-hidden w-full md:w-auto max-h-[90vh] md:max-h-full overflow-y-scroll animate-in slide-in-from-bottom"
-      v-bind:style="themeStyle"
-      v-on:touchstart="handleTouchStart"
-      v-on:touchmove="handleTouchMove"
-      v-on:touchend="handleTouchEnd"
+      :style="themeStyle"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
     >
       <div class="flex flex-col">
-        <div
-          v-if="pokemon"
-          class="flex flex-col px-5 py-5 w-full items-center"
-        >
+        <div v-if="pokemon" class="flex flex-col px-5 py-5 w-full items-center">
           <div class="flex w-full justify-between capitalize font-bold">
             <div class="dark:text-white dark:text-opacity-80">
               #{{ pokemon.id }}
             </div>
             <div class="flex items-center space-x-2">
-              <like-button v-bind:pokemon="pokemon" />
+              <like-button :pokemon="pokemon" />
               <span class="dark:text-white dark:text-opacity-80">{{
                 pokemon.name
               }}</span>
             </div>
           </div>
           <img
-            v-bind:src="pokemon.artwork"
-            v-bind:alt="pokemon.name"
+            :src="pokemon.artwork"
+            :alt="pokemon.name"
             crossorigin="anonymous"
             class="w-64 object-contain"
           />
           <poke-type-list
-            v-bind:types="bio?.types || []"
-            v-bind:loading="loading"
+            :types="bio?.types || []"
+            :loading="loading"
           />
         </div>
 
@@ -59,10 +56,10 @@
       <div
         class="flex flex-col bg-white dark:bg-gray-900 w-full md:w-72 justify-center pt-5 pb-36 md:py-0 px-5 space-y-5"
       >
-        <stat-list v-bind:stats="bio?.stats || []" v-bind:loading="loading" />
+        <stat-list :stats="bio?.stats || []" :loading="loading" />
         <abilities-list
-          v-bind:abilities="bio?.abilities || []"
-          v-bind:loading="loading"
+          :abilities="bio?.abilities || []"
+          :loading="loading"
         />
       </div>
     </div>

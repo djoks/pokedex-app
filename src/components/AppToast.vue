@@ -1,14 +1,14 @@
 <template>
   <div
     v-if="toast.isVisible"
-    v-bind:class="[
+    :class="[
       'fixed min-w-28 z-50 flex flex-col space-y-2',
       positionClasses,
     ]"
   >
     <div
       v-for="(message, index) in toast.messages"
-      v-bind:key="index"
+      :key="index"
       class="p-4 bg-black text-white rounded-md fade-in-0"
     >
       {{ message }}
