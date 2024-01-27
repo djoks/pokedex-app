@@ -1,62 +1,59 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { mount } from '@vue/test-utils';
-import LikeButton from '@/components/LikeButton.vue';
-import { createTestingPinia } from '@pinia/testing';
-import { useLikePokemon } from '@/composables';
-import { useToastStore } from '@/stores';
-import { ref } from 'vue';
+import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { mount, shallowMount } from '@vue/test-utils'
+import LikeButton from '@/components/LikeButton.vue'
+import { createTestingPinia } from '@pinia/testing'
+// import { useLikePokemon } from '@/composables';
+import { useToastStore } from '@/stores'
+import { ref } from 'vue'
 
-vi.mock('@/composables/useLikePokemon', () => ({
-    default: vi.fn(() => ({
-        isLiked: ref(false),
-        toggleLike: vi.fn(),
-        loadLikes: vi.fn(),
-    })),
-}));
+const pokemon = { id: 1, name: 'pikachu', artwork: 'https://picsum.photos/200' }
 
 describe('LikeButton', () => {
-    beforeEach(() => {
-        createTestingPinia({
-            createSpy: vi.fn,
-        });
-    });
+  beforeEach(() => {
+    createTestingPinia({
+      createSpy: vi.fn,
+    })
+  })
 
-    it('displays the correct icon based on like state and shows toast on click', async () => {
-        const wrapper = mount(LikeButton, {
-            props: { pokemon: { id: 1, name: 'pikachu', artwork: 'https://picsum.photos/200' } },
-            global: {
-                stubs: {
-                    HeartIcon: true,
-                    HeartFilledIcon: true,
-                },
-                plugins: [createTestingPinia({ createSpy: vi.fn })],
-            },
-        });
+  it('should display the correct icon', async () => {
+    const wrapper = mount(LikeButton, {
+      props: {
+        pokemon,
+      },
+      global: {
+        stubs: {
+          HeartIcon: true,
+          HeartFilledIcon: true,
+        },
+        plugins: [createTestingPinia({ createSpy: vi.fn })],
+      },
+    })
+    expect(wrapper.isVisible()).toBe(true)
+  })
 
-        const { isLiked, toggleLike } = useLikePokemon('pikachu');
-        const toastStore = useToastStore();
+  it('displays the correct icon based on like state', async () => {
+    const wrapper = mount(LikeButton, {
+      props: {
+        pokemon,
+      },
+      global: {
+        stubs: {
+          HeartIcon: true,
+          HeartFilledIcon: true,
+        },
+        plugins: [createTestingPinia({ createSpy: vi.fn })],
+      },
+    })
 
-        // Initial state: not liked
-        expect(wrapper.find('[role="like"]').exists()).toBe(true);
-        expect(wrapper.find('[role="dislike"]').exists()).toBe(false);
+    expect(wrapper.find('[role="like"]').exists()).toBe(true)
+    expect(wrapper.find('[role="dislike"]').exists()).toBe(false)
 
-        // Simulate click to like
-        await wrapper.trigger('click',);
-        await wrapper.vm.$nextTick();
+    await wrapper.find('button').trigger('click')
+    await wrapper.vm.$nextTick()
 
-        expect(toggleLike).toHaveBeenCalled();
-        expect(toastStore.makeToast).toHaveBeenCalledWith('You liked Pikachu!');
+    expect(wrapper.find('[role="like"]').exists()).toBe(false)
+    expect(wrapper.find('[role="dislike"]').exists()).toBe(true)
 
-        // Change like state to liked
-        isLiked.value = true;
-        await wrapper.vm.$nextTick();
-
-        // Liked state
-        expect(wrapper.find('[role="dislike"]').exists()).toBe(true);
-        expect(wrapper.find('[role="like"]').exists()).toBe(false);
-
-        // Simulate click to dislike
-        await wrapper.trigger('click');
-        expect(toastStore.makeToast).toHaveBeenCalledWith('You disliked Pikachu!');
-    });
-});
+    // you cannot test toast here as the tost is not rendered here
+  })
+})

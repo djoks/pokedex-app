@@ -11,15 +11,26 @@ describe('PokeModal', () => {
   beforeEach(() => {
     const testingPinia = createTestingPinia({
       createSpy: vi.fn,
+      initialState: {
+        pokeStore: {
+          pokemon: {
+            __typename: 'PokemonItem',
+            id: 1,
+            url: 'https://pokeapi.co/api/v2/pokemon/1/',
+            name: 'bulbasaur',
+            image:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+            artwork:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+            dreamworld:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg',
+          },
+        },
+      },
     })
 
-    pokeStore = usePokeStore()
+    pokeStore = usePokeStore(testingPinia);
     pokeStore.closeModal = vi.fn()
-    pokeStore.pokemon = {
-      id: 1,
-      name: 'bulbasaur',
-      artwork: 'https://picsum.photos/200',
-    }
 
     wrapper = mount(PokeModal, {
       global: {
@@ -30,6 +41,9 @@ describe('PokeModal', () => {
 
   it('renders with data from store', async () => {
     await flushPromises()
+
+    wrapper.trigger('click')
+
     expect(wrapper.text()).toContain('bulbasaur')
     expect(wrapper.find('img').attributes('src')).toBe(
       'https://picsum.photos/200',

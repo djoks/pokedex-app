@@ -5,6 +5,7 @@
       :key="pokemon.id"
       :pokemon="pokemon"
     />
+  
     <template v-if="loading">
       <skeleton-loader
         v-for="n in 20"

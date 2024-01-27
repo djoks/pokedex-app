@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { Ref, ref } from 'vue'
 
-const useThemeStore = defineStore('useThemeStore', () => {
+const useThemeStore = defineStore('themeStore', () => {
   const isDarkMode: Ref<boolean> = ref(false)
 
   const applyTheme = () => {
